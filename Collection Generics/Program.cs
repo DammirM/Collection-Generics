@@ -1,123 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Collection_Generics
 {
-    class Program
+    class Program : Employee
     {
         static void Main(string[] args)
         {
-            Employee Employ = new Employee();
-            Employ.Name = "Jamie Vardy";
-            Employ.Id = 001;
-            Employ.Gender = "Male";
-            Employ.Salary = 25000;
 
+            // Creating 5 objects of Employee
 
-            Employee Employ1 = new Employee();
-            Employ1.Name = "Anna Anna";
-            Employ1.Id = 002;
-            Employ1.Gender = "Female";
-            Employ1.Salary = 30000;
+            Employee Emp1 = new Employee();
+            Emp1.Name = "Jamie Vardy";
+            Emp1.ID = 001;
+            Emp1.Gender = "Male";
+            Emp1.Salary = 25000;
 
-            Employee Employ2 = new Employee();
-            Employ2.Name = "Didier Drogba";
-            Employ2.Id = 003;
-            Employ2.Gender = "Male";
-            Employ2.Salary = 35000;
+            Employee Emp2 = new Employee();
+            Emp2.Name = "Anna Anna";
+            Emp2.ID = 002;
+            Emp2.Gender = "Female";
+            Emp2.Salary = 30000;
 
-            Employee Employ3 = new Employee();
-            Employ3.Name = "Karim Benzema";
-            Employ3.Id = 004;
-            Employ3.Gender = "Male";
-            Employ3.Salary = 38000;
+            Employee Emp3 = new Employee();
+            Emp3.Name = "Didier Drogba";
+            Emp3.ID = 003;
+            Emp3.Gender = "Male";
+            Emp3.Salary = 35000;
 
-            Employee Employ4 = new Employee();
-            Employ4.Name = "Sara Bengtsson";
-            Employ4.Id = 005;
-            Employ4.Gender = "Female";
-            Employ4.Salary = 44000;
+            Employee Emp4 = new Employee();
+            Emp4.Name = "Karim Benzema";
+            Emp4.ID = 004;
+            Emp4.Gender = "Male";
+            Emp4.Salary = 38000;
+
+            Employee Emp5 = new Employee();
+            Emp5.Name = "Sara Bengtsson";
+            Emp5.ID = 005;
+            Emp5.Gender = "Female";
+            Emp5.Salary = 44000;
 
             Console.WriteLine("---------- Push + Count ---------\n");
 
+            // Creating a stack and adding them in to the stack with Push.
 
-            Stack<Employee> Emp = new Stack<Employee>();
-            Emp.Push(Employ);
-            Emp.Push(Employ1);
-            Emp.Push(Employ2);
-            Emp.Push(Employ3);
-            Emp.Push(Employ4);
+            Stack<Employee> Em = new Stack<Employee>();
+            Em.Push(Emp1);
+            Em.Push(Emp2);
+            Em.Push(Emp3);
+            Em.Push(Emp4);
+            Em.Push(Emp5);
 
-            foreach (Employee item in Emp)
+            // Foreach loop to show them all.
+            foreach (Employee item in Em)
             {
-                Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", item.Name, item.Id, item.Gender, item.Salary);
-                Console.WriteLine("Items left in stack = " + Emp.Count);
+                PrintInfo(item);
+                Console.WriteLine("Items left in stack = " + Em.Count);
             };
 
             Console.WriteLine("\n----------Pop + Count -----------\n");
 
-            Employee E = Emp.Pop();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", E.Name, E.Id, E.Gender, E.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
-            Employee E1 = Emp.Pop();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", E1.Name, E1.Id, E1.Gender, E1.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
-            Employee E2 = Emp.Pop();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", E2.Name, E2.Id, E2.Gender, E2.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
-            Employee E3 = Emp.Pop();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", E3.Name, E3.Id, E3.Gender, E3.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
-            Employee E4 = Emp.Pop();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", E4.Name, E4.Id, E4.Gender, E4.Salary);
-            Console.WriteLine(Emp.Count);
+            //
+
+            while (Em.Count > 0)
+            {
+                Employee E = Em.Pop();
+                PrintInfo(E);
+                Console.WriteLine("Items left in stack = " + Em.Count);
+            }
 
             // Adding them back in to the stack with push
 
-            Emp.Push(Employ);
-            Emp.Push(Employ1);
-            Emp.Push(Employ2);
-            Emp.Push(Employ3);
-            Emp.Push(Employ4);
+            Em.Push(Emp1);
+            Em.Push(Emp2);
+            Em.Push(Emp3);
+            Em.Push(Emp4);
+            Em.Push(Emp5);
 
             Console.WriteLine("--------Peek ---------\n");
 
 
-            Employee P = Emp.Peek();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", P.Name, P.Id, P.Gender, P.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
+            Employee P = Em.Peek();
+            PrintInfo(P);
+            Console.WriteLine("Items left in stack = " + Em.Count);
 
-            Emp.Pop();
+            Em.Pop();
 
-            Employee P1 = Emp.Peek();
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", P1.Name, P1.Id, P1.Gender, P1.Salary);
-            Console.WriteLine("Items left in stack = " + Emp.Count);
+            Employee P1 = Em.Peek();
+            PrintInfo(P1);
+            Console.WriteLine("Items left in stack = " + Em.Count);
 
-            Emp.Pop();
+            Em.Pop();
 
-            Console.WriteLine("Checking if item nr 3 is in the stack??\n");
+            Console.WriteLine("\nChecking if item nr 3 is in the stack??\n");
 
-            if (Emp.Count == 3)
+            if (Em.Count == 3)
             {
-                Console.WriteLine("Item number 3 is in the stack");
+                Console.WriteLine("Item number {0} is in the stack", Em.Count);
             }
             else
             {
-                Console.WriteLine("Item 3 is not in the stack");
+                Console.WriteLine("Item {0} is not in the stack", Em.Count);
             }
 
             Console.WriteLine("\n----------List---------\n");
 
             List<Employee> Empl = new List<Employee>();
-            Empl.Add(Employ);
-            Empl.Add(Employ1);
-            Empl.Add(Employ2);
-            Empl.Add(Employ3);
-            Empl.Add(Employ4);
+            Empl.Add(Emp1);
+            Empl.Add(Emp2);
+            Empl.Add(Emp3);
+            Empl.Add(Emp4);
+            Empl.Add(Emp5);
 
-            if (Empl.Contains(Employ1))
+            if (Empl.Contains(Emp2))
             {
-                Console.WriteLine("The item is in the list..." + Employ1.Name);
+                Console.WriteLine("The item is in the list..." + Emp2.Name);
             }
             else
             {
@@ -125,11 +123,11 @@ namespace Collection_Generics
                 
             }
 
-            Console.WriteLine("\nFind the first Mmale in the List\n");
+            Console.WriteLine("\nFind the first Male in the List\n");
 
             Employee G = Empl.Find(g => g.Gender == "Male");
 
-            Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", G.Name, G.Id, G.Gender, G.Salary);
+            PrintInfo(G);
 
             Console.WriteLine("\nFind all Males in the List\n");
 
@@ -137,18 +135,13 @@ namespace Collection_Generics
 
             foreach (Employee item in M)
             {
-                Console.WriteLine("Name = {0}, ID = {1}, Gender = {2}, Salary = {3}", item.Name, item.Id, item.Gender, item.Salary);
+               PrintInfo(item);
             }
-
-
-
-
-
-
-
 
 
             Console.ReadKey();
         }
+
+        
     }
 }
